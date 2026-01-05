@@ -17,7 +17,7 @@ local function new(class, props)
     return inst
 end
 
-local blatantv2fix = loadstring(game:HttpGet("https://raw.githubusercontent.com/hahahahehe9911-ui/syndicate/refs/heads/main/moduls/BlatantV2.lua"))()
+local blatantv2fix = loadstring(game:HttpGet("https://raw.githubusercontent.com/hahahahehe9911-ui/syndicate/refs/heads/main/moduls/Blatant.lua"))()
 local TeleportModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/hahahahehe9911-ui/syndicate/refs/heads/main/moduls/TeleportModule.lua"))()
 local DisableCutscenes = loadstring(game:HttpGet("https://raw.githubusercontent.com/hahahahehe9911-ui/syndicate/refs/heads/main/moduls/DisableCutscenes.lua"))()
 local DisableExtras = loadstring(game:HttpGet("https://raw.githubusercontent.com/hahahahehe9911-ui/syndicate/refs/heads/main/moduls/DisableExtras.lua"))()
