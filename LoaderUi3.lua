@@ -1,5 +1,53 @@
 repeat task.wait() until game:IsLoaded()
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RaycastUtility = require(ReplicatedStorage.Shared.RaycastUtility)
+
+local player               = svc.Players.LocalPlayer
+local hrp                  = player.Character and player.Character:WaitForChild("HumanoidRootPart") or
+    player.CharacterAdded:Wait():WaitForChild("HumanoidRootPart")
+
+local mods                 = {
+    Net                = svc.RS.Packages._Index["sleitnick_net@0.2.0"].net,
+    Replion            = require(svc.RS.Packages.Replion),
+    FishingController  = require(svc.RS.Controllers.FishingController),
+    TradingController  = require(svc.RS.Controllers.ItemTradingController),
+    ItemUtility        = require(svc.RS.Shared.ItemUtility),
+    VendorUtility      = require(svc.RS.Shared.VendorUtility),
+    PlayerStatsUtility = require(svc.RS.Shared.PlayerStatsUtility),
+    Effects            = require(svc.RS.Shared.Effects),
+}
+
+local api                  = {
+    Events = {
+        RECutscene                    = mods.Net["RE/ReplicateCutscene"],
+        REStop                        = mods.Net["RE/StopCutscene"],
+        REFav                         = mods.Net["RE/FavoriteItem"],
+        REFavChg                      = mods.Net["RE/FavoriteStateChanged"],
+        REFishDone                    = mods.Net["RE/FishingCompleted"],
+        REFishGot                     = mods.Net["RE/FishCaught"],
+        RENotify                      = mods.Net["RE/TextNotification"],
+        REEquip                       = mods.Net["RE/EquipToolFromHotbar"],
+        REEquipItem                   = mods.Net["RE/EquipItem"],
+        REAltar                       = mods.Net["RE/ActivateEnchantingAltar"],
+        REAltar2                      = mods.Net["RE/ActivateSecondEnchantingAltar"],
+        UpdateOxygen                  = mods.Net["URE/UpdateOxygen"],
+        REPlayFishEffect              = mods.Net["RE/PlayFishingEffect"],
+        RETextEffect                  = mods.Net["RE/ReplicateTextEffect"],
+        REEvReward                    = mods.Net["RE/ClaimEventReward"],
+        Totem                         = mods.Net["RE/SpawnTotem"],
+        REObtainedNewFishNotification = mods.Net["RE/ObtainedNewFishNotification"],
+        FishingMinigameChanged        = mods.Net["RE/FishingMinigameChanged"],
+        FishingStopped                = mods.Net["RE/FishingStopped"],
+    },
+}
+
+local repl                 = {
+    Data = mods.Replion.Client:WaitReplion("Data"),
+    Items = svc.RS:WaitForChild("Items"),
+    PlayerStat = require(svc.RS.Packages._Index:FindFirstChild("ytrev_replion@2.0.0-rc.3").replion)
+}
+
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
